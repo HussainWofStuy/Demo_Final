@@ -1,0 +1,21 @@
+Heuristics
+
+Stage 1 Heuristics
+
+- Reward open squares
+  - The idea is with more open squares, the board is less likely to be cluttered and more space to manuever tiles in.  Also, less likely to die in an open board
+  - In a slightly more advance version, there would be a balance between rewarding open spaces and keeping the board slightly cluttered
+    - The idea here is to try to generate the tiles in certain "favorable" position to help with monotonic rows
+
+- Keeping the large values on the edge
+  - Similar to the human reasoning of keeping the largest value in one corner and building all the smaller tiles around it
+  - Starts out with edges and then keep it to a corner later
+
+The goal at the end of stage 1 is to hit at least 4096 every single time.
+
+
+Stage 2 Heuristics
+
+- Create a penalty for non-montonic rows and columns that increase as the value of these tiles increase
+  - The idea is to increase the chance of having tiles with the same value to be adjacent to each other
+  - This allows the AI to create huge chains of increasing values
