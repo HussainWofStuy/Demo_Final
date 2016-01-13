@@ -19,3 +19,13 @@ Stage 2 Heuristics
 - Create a penalty for non-montonic rows and columns that increase as the value of these tiles increase
   - The idea is to increase the chance of having tiles with the same value to be adjacent to each other
   - This allows the AI to create huge chains of increasing values
+
+- Modify the second basic heuristic to take into account potential merges as well as open spaces
+  - This encourages a board position with multiple merges opportunity/ open fields
+
+The goal at the end of stage 2 is to hit at least 8192 every single time.
+
+Stage 3 Heuristics
+- Weights the weight of each heuristic
+
+The goal at the end of stage 3 is to hit at least 16384 every single time.
