@@ -1,0 +1,20 @@
+void drawRect(float xcor, float ycor, float width, float height, float roundness, color hue){
+     fill(color);
+     rect(xcor, ycor, widht, height, roundness);
+}
+
+void draw(){
+     background(250, 249, 237);
+     drawRect(25, 100, 475, 480, 10, color(234, 234, 223));
+     float width = 100;
+     float height = 100;
+     float roundness = 10;
+     float hue = color(200);
+     for(int row = 0; row < board.length; row++){
+     	     float ycor = 115 * (row + 1);
+	     for(int col = 0; col < board[row].length; col++){
+	     	     float xcor = 115 * col + 40;
+    		     drawRect(xcor, ycor, width, height, roundness, hue);
+             }
+     }
+}
