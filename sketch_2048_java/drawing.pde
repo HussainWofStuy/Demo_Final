@@ -40,14 +40,40 @@ void dt(String t, float x, float y, float w, float h, color c, float s, int al){
      
   }
   
+  void board(int[][] b){
+    for(int k = 0; k < b.length; k++){
+     for(int e = 0; e < b[k].length; e++){
+       if(b[k][e] > 0){
+        r(40+115*e,115+115*k,100,100,5,c[b[k][e]]);
+        if(b[k][e] > 2){
+        dt(""+(int)Math.pow(2, b[k][e]), 40+115*e, 150+115*k, 100, 100, 255, 40, CENTER);
+        }if(b[k][e] < 3){
+         dt(""+(int)Math.pow(2, b[k][e]), 40+115*e, 150+115*k, 100, 100, 0, 40, CENTER);
+        }
+        
+       }
+     }
+    }
+  }
+  
   void doDeadThings(){
      fill(255,100);
      rect(0,0,width,height);
-     fill(0);
+     fill(color(118,95,71));
      textAlign(CENTER);
      textSize(30);
      text("Gameover! Click to restart", 0, height/2,width,50);
      if(mousePressed){restart();}
+  }
+  
+  void doWinThings(){
+    fill(255,100);
+     rect(0,0,width,height);
+     fill(color(118,95,71));
+     textAlign(CENTER);
+     textSize(30);
+     text("Congratulations! You got to 2048! Click to continue playing.", 0, height/2-50,width,100);
+     if(mousePressed){winState = false; cont =true;}
   }
   
   void create(int[][] b){

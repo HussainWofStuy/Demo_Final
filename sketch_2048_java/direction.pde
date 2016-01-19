@@ -24,115 +24,81 @@ class direction{
   boolean canMove(int[][] data, int dir){
     int[][] compN = copy(data);
     int[][] rN = copy(data);  
-    if(dir == RIGHT){right(compN, prevb);}
-    if(dir == LEFT){left(compN, prevb);}
-    if(dir == UP){up(compN, prevb);}
-    if(dir == DOWN){down(compN, prevb);}
+    if(dir == RIGHT){compN = right(compN);}
+    if(dir == LEFT){left(compN);}
+    if(dir == UP){up(compN);}
+    if(dir == DOWN){down(compN);}
     return !compFunc(compN, rN);
   }
   
-  void right(int[][] data,int[][][] stData){
+  int[][] right(int[][] data){
    for(int i = 2; i > -1; i--){
      for(int k = 0; k < data.length; k++){
-       stData[k][i][2] = RIGHT;
        if(data[k][i]!=0){
          if(data[k][i+1]==data[k][i]){
-            data[k][i+1]+=1;
-            data[k][i]=0;
-           stData[k][i][1] +=1;
+          data[k][i+1]+=1;
+          data[k][i]=0;
+          scoreAdd += data[k][i+1]*(int)Math.pow(2,data[k][i+1]);
           }
-         while(data[k][i+1] == 0 && i < 3){
+         if(data[k][i+1] == 0 && i < 3){
           data[k][i+1] = data[k][i];
           data[k][i] = 0;
-           stData[k][i][1] +=1;
-          if(i!=2){i++;}
-         }
-           
-         if(data[k][i+1]==data[k][i]){
-           data[k][i+1]+=1;
-           data[k][i]=0; 
-           stData[k][i][1] +=1;
-         }
-        }
+         }}
        }
       }
+      return data;
      }
    
-  void left(int[][] data, int[][][] stData){
+  int[][] left(int[][] data){
     for(int i = 1; i < 4; i++){
        for(int k = 0; k < data.length; k++){
-         stData[k][i][2] = LEFT;
          if(data[k][i]!=0){
            if(data[k][i-1]==data[k][i]){
               data[k][i-1]+=1;
               data[k][i]=0;
-              stData[k][i][1] -= 1;
+              scoreAdd += data[k][i-1]*(int)Math.pow(2,data[k][i-1]);
            }
            while(data[k][i-1] == 0 && i > 0){
             data[k][i-1] = data[k][i];
             data[k][i] = 0;
-            stData[k][i][1] -= 1;
-            if(i!=1){i--;}
-           }
-           
-           if(data[k][i-1]==data[k][i]){
-              data[k][i-1]+=1;
-              data[k][i]=0;
-              stData[k][i][1] -= 1;
-           }
-           
+           }  
            }}}
+           return data;
   }
   
-  void up(int[][] data, int[][][] stData){
+  int[][] up(int[][] data){
      for(int k = 1; k < 4; k++){
        for(int i = 0; i < data.length; i++){
-         stData[k][i][2] = UP;
          if(data[k][i]!=0){
            if(data[k-1][i]==data[k][i]){
               data[k-1][i]+=1;
               data[k][i]=0;
-              stData[k][i][0]-=1;
+              scoreAdd += (data[k-1][i]-1)*(int)Math.pow(2,(data[k-1][i]-1));
            }
            while(data[k-1][i] == 0 && k > 0){
             data[k-1][i] = data[k][i];
             data[k][i] = 0;
-            stData[k][i][0]-=1;
-            if(k!=1){k--;}
            }
            
-           if(data[k-1][i]==data[k][i]){
-              data[k-1][i]+=1;
-              data[k][i]=0;
-              stData[k][i][0]-=1;
-           }
            
            }}}
+           return data;
   }
   
-  void down(int[][]data, int[][][] stData){
+  int[][] down(int[][]data){
     for(int k = 2; k > -1; k--){
        for(int i = 0; i < data.length; i++){
-         stData[k][i][2] = DOWN;
          if(data[k][i]!=0){
            if(data[k+1][i]==data[k][i]){
               data[k+1][i]+=1;
               data[k][i]=0;
-              stData[k][i][0]+=1;
+              scoreAdd += data[k+1][i]*(int)Math.pow(2,data[k+1][i]);
             }
            while(data[k+1][i] == 0 && k < 3){
             data[k+1][i] = data[k][i];
             data[k][i] = 0;
-            stData[k][i][0]+=1;
-            if(k!=2){k++;}
            }
-           
-           if(data[k+1][i]==data[k][i]){
-              data[k+1][i]+=1;
-              data[k][i]=0;
-              stData[k][i][0]+=1;
-           }
-           
            }}} 
+           return data;
   }
 }
